@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>CRUD Home Page</h1>
+<ul>
+    <li><a href="{{ path('product_index') }}" >Products</a></li>
+    <li><a href="{{ path('category_index') }}" >Categories</a></li>
+</ul>
+
+{% endblock %}

@@ -20,4 +20,12 @@ class SecurityController extends Controller
             'error' => $error, ];
         return $this->render($template, $args);
     }
+
+    /**
+     * @Route("/logout", name="logout") */
+    public function logout(){
+        return $this->render('security/logout.html.twig', [
+            'controller_name' => 'HomePageController',
+        ]);
+    }
 }

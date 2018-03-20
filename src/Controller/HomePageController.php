@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class HomePageController extends Controller
 {
     /**
-     * @Route("/home", name="home_page")
+     * @Route("/", name="home_page")
      */
     public function index()
     {
@@ -17,13 +17,5 @@ class HomePageController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/crud", name="home_page_crud")
-     */
-    public function crud()
-    {
-        return $this->render('home_page/crud.html.twig', [
-            'controller_name' => 'HomePageController',
-        ]);
-    }
+
 }

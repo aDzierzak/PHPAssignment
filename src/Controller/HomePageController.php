@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class HomePageController extends Controller
 {
     /**
-     * @Route("/", name="home_page")
+     * @Route("/", name="main")
      */
     public function index()
     {

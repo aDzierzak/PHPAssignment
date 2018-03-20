@@ -3,9 +3,40 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <style> header {
+                text-align: right;
+                border-bottom: 0.5rem dashed palegreen; padding: 1rem;
+            }
+        </style>
     </head>
     <body>
+
+    <header>
+        {#if user is logged in it will show their username and the logout option, otherwise it will just show the login option#}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+            Username:
+            <strong>{{ app.user.username }}</strong>
+            <br>
+            <a href="{{ url('logout') }}">logout</a>
+        {% else %}
+            <a href="{{ url('login') }}">login</a>
+        {% endif %}
+    </header>
+
+    <nav> <ul>
+            <li>
+                <a href="{{ url('main') }}">home</a>
+            </li>
+
+            {#if user is an admin it will show them the link to the admin crud page#}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{ url('admin') }}">admin home</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

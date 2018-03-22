@@ -106,6 +106,11 @@ class Product
         $this->category = $category;
     }
 
+    public function __toString()
+    {
+        return $this->id . ': ' . $this->getDescription();
+    }
+
 
 
 

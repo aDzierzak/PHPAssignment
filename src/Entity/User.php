@@ -11,6 +11,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="app_users")
@@ -117,6 +118,32 @@ class User implements UserInterface, \Serializable {
     {
         $this->password = $password;
     }
+
+    /** /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="user")
+     */
+    private $reviews;
+
+    public function __construct() {
+
+        $this->reviews = new ArrayCollection();
+        $this->products = new ArrayCollection();
+    }
+
+    public function getReviews() {
+        return $this->reviews;
+    }
+
+    /** /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="user")
+     */
+    private $products;
+
+
+    public function getProducts() {
+        return $this->products;
+    }
+
 
 
 }

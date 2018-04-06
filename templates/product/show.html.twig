@@ -27,13 +27,39 @@
             <th>Category</th>
             <td>{{ product.category.name }}</td>
         </tr>
+        <tr>
+            <th>Reviews for this Product</th>
+            <td>
+                {% for review in product.reviews %}
+                    <li>
+                        <a href="{{ url('review_show', {'id':review.id}) }}">
+                            {{ review.id }} :: {{ review.description }}
+                        </a>
+                    </li>
+                {% else %}
+                    (no reviews yet)
+                {% endfor %}
+            </td>
+        </tr>
 
     </table>
 
+
+
+
+    <td><a href="{{ path('review_new', {'product': product.category}) }}">review product</a></td>
+
     <a href="{{ path('product_index') }}">back to list</a>
 
-    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
 
-    {% include 'product/_delete_form.html.twig' with {'identifier': product.id} only %}
+
+
+
+    {% if is_granted('ROLE_ADMIN') %}
+               <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+
+
+        {% include 'product/_delete_form.html.twig' with {'identifier': product.id} only %}
+    {% endif %}
 
 {% endblock %}

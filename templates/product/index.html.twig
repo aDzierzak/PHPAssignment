@@ -8,25 +8,35 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Product</th>
                 <th>Description</th>
+                <th>Ingredients</th>
                 <th>Image</th>
                 <th>Price</th>
                 <th>Category</th>
+                <th>User</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for product in products %}
             <tr>
-                <td>{{ product.id }}</td>
+                <td>{{ product.title }}</td>
                 <td>{{ product.description }}</td>
+                <td>{{ product.ingredients }}</td>
                 <td>{{ product.image }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.category.name }}</td>
+                <td>{{ product.username }}</td>
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    {% elseif is_granted('ROLE_USER') %}
+                        {% if product.username ==  app.user.username %}
+                            <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                        {% endif %}
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -36,6 +46,8 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('product_new') }}">Create new</a>
+    {% if is_granted('ROLE_USER') %}
+        <a href="{{ path('product_new') }}">Create new</a>
+    {% endif %}
 
 {% endblock %}

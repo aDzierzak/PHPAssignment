@@ -22,7 +22,7 @@ class LoadUsers extends Fixture
     public function load(ObjectManager $manager)
     {
         // create objects
-        $userUser = $this->createUser('user', 'user');
+        $userUser = $this->createUser('user', 'user' , ['ROLE_USER']);
         $userAdmin = $this->createUser('admin', 'admin', ['ROLE_ADMIN']);
         $userAgata = $this->createUser('agata', 'dzierzak', ['ROLE_SUPER_ADMIN']);
 

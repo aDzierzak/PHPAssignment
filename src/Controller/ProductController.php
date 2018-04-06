@@ -37,6 +37,7 @@ class ProductController extends Controller
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
+        $form->get('username')->setData($this->getUser()->getUsername());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -26,7 +26,18 @@
 
     <nav> <ul>
             <li>
-                <a href="{{ url('main') }}">home</a>
+                <a href="{{ url('main') }}">Home</a>
+            </li>
+            <li>
+                <a href="{{ url('product_index') }}">Products</a>
+            </li>
+
+            <li>
+                <a href="{{ url('category_index') }}">Categories</a>
+            </li>
+
+            <li>
+                <a href="{{ url('review_index') }}">Reviews</a>
             </li>
 
             {#if user is an admin it will show them the link to the admin crud page#}

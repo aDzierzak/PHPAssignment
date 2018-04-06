@@ -12,7 +12,10 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('username',\Symfony\Component\Form\Extension\Core\Type\HiddenType::class)
+            ->add('title')
             ->add('description')
+            ->add('ingredients')
             ->add('image')
             ->add('price')
             ->add('category', EntityType::class, [

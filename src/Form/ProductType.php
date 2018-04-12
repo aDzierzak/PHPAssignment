@@ -17,7 +17,12 @@ class ProductType extends AbstractType
             ->add('description')
             ->add('ingredients')
             ->add('image')
-            ->add('price')
+            ->add('price', EntityType::class, [
+                // list objects from this class
+                'class' => 'App:Price',
+                // use the 'Category.name' property as the visible option string
+                'choice_label' => 'name',
+            ])
             ->add('category', EntityType::class, [
                 // list objects from this class
                 'class' => 'App:Category',

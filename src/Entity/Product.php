@@ -29,6 +29,11 @@ class Product
     /**
      * @ORM\Column(type="string")
      */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     private $title;
 
     /**
@@ -122,26 +127,15 @@ class Product
     }
 
     /**
-     * @return mixed
+     * @ORM\ManyToOne(targetEntity="App\Entity\Price", inversedBy="products") * @ORM\JoinColumn(nullable=true)
      */
-    public function getPrice()
-    {
+    private $price;
+    public function getPrice(): ?Price {
         return $this->price;
     }
-
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price)
-    {
+    public function setPrice(Price $price = null) {
         $this->price = $price;
     }
-    /**
-     * @ORM\Column(type="string") */
-    private $image;
-    /**
-     * @ORM\Column(type="float") */
-    private $price;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products") * @ORM\JoinColumn(nullable=true)

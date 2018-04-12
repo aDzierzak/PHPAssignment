@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Price range{% endblock %}
+
+{% block body %}
+
+    <h1>Create new Price range</h1>
+
+    {% include 'price/_form.html.twig' with {'form': form} only %}
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Price range index{% endblock %}
+
+{% block body %}
+
+    <h1>Price range index</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for price in prices %}
+            <tr>
+                <td>{{ price.id }}</td>
+                <td>{{ price.name }}</td>
+                <td>
+                    <a href="{{ path('price_show', {'id': price.id}) }}">show</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('price_edit', {'id': price.id}) }}">edit</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_USER') %}
+        <a href="{{ path('price_new') }}">Create new</a>
+    {% endif %}
+{% endblock %}

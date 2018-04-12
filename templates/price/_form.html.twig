@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+    {{ form_row(form.name) }}
+
+
+<div>
+    Products for this Price Range:
+    <ul>
+        {% for product in form.vars.value.products %}
+            <li>
+                <a href="{{ url('product_show', {'id':product.id}) }}">
+                    {{ product.id }} :: {{ product.description }}
+                </a>
+            </li>
+        {% else %}
+            <li>
+                (no products for this category)
+            </li>
+        {% endfor %}
+    </ul> </div>
+<!--
+    {{ form_widget(form.products) }}
+    -->
+
+<button>{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

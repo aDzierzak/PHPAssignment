@@ -5,10 +5,13 @@
 {% block body %}
 
     <h1>Price range index</h1>
-    <table>
+
+    <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
+            {% if is_granted('ROLE_ADMIN') %}
+                <th>Id</th>
+            {% endif %}
             <th>Name</th>
             <th>actions</th>
         </tr>
@@ -16,7 +19,9 @@
         <tbody>
         {% for price in prices %}
             <tr>
+            {% if is_granted('ROLE_ADMIN') %}
                 <td>{{ price.id }}</td>
+            {% endif %}
                 <td>{{ price.name }}</td>
                 <td>
                     <a href="{{ path('price_show', {'id': price.id}) }}">show</a>

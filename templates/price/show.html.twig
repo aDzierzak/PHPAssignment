@@ -6,12 +6,13 @@
 
     <h1>Price</h1>
 
-    <table>
+    <table class="table">
 
-
+        {% if is_granted('ROLE_ADMIN') %}
         <th>Id</th>
         <td>{{ price.id }}</td>
         </tr>
+        {% endif %}
         <tr>
             <th>Name</th>
             <td>{{ price.name }}</td>

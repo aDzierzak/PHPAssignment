@@ -6,11 +6,14 @@
 
     <h1>Product</h1>
 
-    <table>
+
+    <table class="table">
+    {% if is_granted('ROLE_ADMIN') %}
         <tr>
             <th>Id</th>
             <td>{{ product.id }}</td>
         </tr>
+        {% endif %}
         <tr>
             <th>Description</th>
             <td>{{ product.description }}</td>
@@ -44,16 +47,64 @@
 
     </table>
 
+    <h2>Reviews for this product</h2>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Rating</th>
+            <th>description</th>
+        </tr>
+        {% for review in product.reviews %}
+            <tr>
+                <td>{{ review.username }}</td>
+                <td>
+                    {% if review.rating == 0.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=1 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 1.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=2 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 2.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=3 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 3.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=4 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 4.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=5 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
 
+                </td>
+                <td>{{ review.description }}</td>
+            </tr>
+            <br>
+        {% else %}
+            (no products for this category)
+        {% endfor %}
+        </td>
+        </tr>
+
+    </table>
 
 
     <td><a href="{{ path('review_new', {'product': product.category}) }}">review product</a></td>
 
     <a href="{{ path('product_index') }}">back to list</a>
-
-
-
-
 
     {% if is_granted('ROLE_ADMIN') %}
                <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>

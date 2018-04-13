@@ -8,7 +8,9 @@
     <table class="table">
         <thead>
             <tr>
+            {% if is_granted('ROLE_ADMIN') %}
                 <th>Id</th>
+            {% endif %}
                 <th>Name</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +18,9 @@
         <tbody>
         {% for category in categories %}
             <tr>
+            {% if is_granted('ROLE_ADMIN') %}
                 <td>{{ category.id }}</td>
+            {% endif %}
                 <td>{{ category.name }}</td>
                 <td>
                     <a href="{{ path('category_show', {'id': category.id}) }}">show</a>

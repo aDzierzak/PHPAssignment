@@ -22,9 +22,51 @@ class Review
     private $rating;
 
     /**
+     * @ORM\Column(type="float")
+     */
+    private $pricePaid;
+
+    /**
+     * @return mixed
+     */
+    public function getPricePaid()
+    {
+        return $this->pricePaid;
+    }
+
+    /**
+     * @param mixed $pricePaid
+     */
+    public function setPricePaid($pricePaid): void
+    {
+        $this->pricePaid = $pricePaid;
+    }
+
+    /**
      * @ORM\Column(type="string")
      */
     private $username;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $placePurchased;
+
+    /**
+     * @return mixed
+     */
+    public function getPlacePurchased()
+    {
+        return $this->placePurchased;
+    }
+
+    /**
+     * @param mixed $placePurchased
+     */
+    public function setPlacePurchased($placePurchased): void
+    {
+        $this->placePurchased = $placePurchased;
+    }
 
     /**
      * @ORM\Column(type="string")

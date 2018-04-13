@@ -24,20 +24,20 @@
     <h2>Products in this category</h2>
     <table class="table">
         <tr>
+            {% for product in category.products %}
+        {% if is_granted('ROLE_ADMIN') %}
            <th>Id</th>
-            <th>Name</th>
+            <td>{{ review.id }}</td>
+        {% endif %}
         </tr>
-        {% for product in category.products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.title }}</td>
-            </tr>
+        <tr>
+            <th>Product</th>
+                <td><a href="{{ path('product_show', {'id': product.id}) }}">{{ product.title }}</a></td>
+        </tr>
             <br>
                 {% else %}
                     (no products for this category)
                 {% endfor %}
-            </td>
-        </tr>
 
     </table>
 

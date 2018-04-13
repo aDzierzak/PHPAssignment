@@ -55,9 +55,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('price_index') }}">Price range</a>
             </li>
+            {% if is_granted('ROLE_USER') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('user_index') }}">User</a>
             </li>
+            {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('admin') }}">Admin</a>

@@ -19,12 +19,13 @@ class ReviewType extends AbstractType
             ->add('description')
             ->add('rating')
             ->add('username',\Symfony\Component\Form\Extension\Core\Type\HiddenType::class)
-
+            ->add('pricePaid')
+            ->add('placePurchased')
             ->add('product', EntityType::class, [
                 // list objects from this class
                 'class' => 'App:Product',
                 // use the 'Category.' property as the visible option string
-                'choice_label' => 'description',
+                'choice_label' => 'title',
             ])
 
            ;

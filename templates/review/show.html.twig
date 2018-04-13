@@ -4,12 +4,14 @@
 
 {% block body %}
 
-    <h1>Review</h1>
+    <h1>Review for {{ review.product.title }}</h1>
 
     <table class="table">
         <tr>
+        {% if is_granted('ROLE_ADMIN') %}
             <th>Id</th>
             <td>{{ review.id }}</td>
+        {% endif %}
         </tr>
         <tr>
             <th>Rating</th>
@@ -54,6 +56,16 @@
         <tr>
             <th>Description</th>
             <td>{{ review.description }}</td>
+        </tr>
+
+        <tr>
+            <th>Price paid</th>
+            <td>{{ review.pricePaid }}</td>
+        </tr>
+
+        <tr>
+            <th>Place Purchased</th>
+            <td>{{ review.placePurchased }}</td>
         </tr>
 
     </table>

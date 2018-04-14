@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 
@@ -25,11 +26,6 @@ class Product
      * @ORM\Column(type="string")
      */
     private $username;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $image;
 
     /**
      * @ORM\Column(type="string")
@@ -110,21 +106,6 @@ class Product
         $this->description = $description;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Price", inversedBy="products") * @ORM\JoinColumn(nullable=true)
@@ -196,6 +177,25 @@ class Product
 
 
 
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={"image/jpeg", "image/gif", "image/png" })
+     */
+    private $brochure;
+
+    public function getBrochure()
+    {
+        return $this->brochure;
+    }
+
+    public function setBrochure($brochure)
+    {
+        $this->brochure = $brochure;
+
+        return $this;
+    }
 
 
 

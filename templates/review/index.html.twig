@@ -13,6 +13,7 @@
             {% if is_granted('ROLE_ADMIN') %}
                 <th>Id</th>
             {% endif %}
+                <th>Product</th>
                 <th>Rating</th>
                 <th>Username</th>
                 <th>Description</th>
@@ -27,6 +28,7 @@
             {% if is_granted('ROLE_ADMIN') %}
                 <td>{{ review.id }}</td>
             {% endif %}
+                <td><a href="{{ path('product_show', {'id': review.product.id}) }}">{{ review.product.title }}</a></td>
                 <td>{{ review.rating }}</td>
                 <td>{{ review.username }}</td>
                 <td>{{ review.description }}</td>

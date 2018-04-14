@@ -99,6 +99,6 @@ class UserController extends Controller
         $em->remove($user);
         $em->flush();
 
-        return $this->redirectToRoute('home_page_index');
+        return $this->redirectToRoute('/');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -26,5 +27,27 @@ class AdminController extends Controller
             'controller_name' => 'AdminController',
         ]);
     }
+
+    /**
+     * @Route("/userIndex", name="admin_userIndex")
+     * @Security("has_role('ROLE_ADMIN')")
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function userIndex()
+    {
+
+        $users = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findAll();
+
+        return $this->render('admin/userIndex.html.twig', [
+            'controller_name' => 'AdminController',
+                'users' => $users,
+
+        ]);
+    }
+
+
 
 }

@@ -8,7 +8,7 @@
 
         {#this will show the login link if user is not logged in#}
         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-            <p>Welcome stranger,  <a href="{{ path('login') }}" >Login</a> </p>
+            <p>Welcome stranger,  <a href="{{ path('login') }}" >Login</a>. Or, <a href="{{ path('user_new') }}" > make account</a></p>
         {% endif %}
     {#welcomes user if user is logged in#}
          {% if is_granted('IS_AUTHENTICATED_FULLY') %}

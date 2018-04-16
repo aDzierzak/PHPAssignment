@@ -37,6 +37,7 @@ class User implements UserInterface, \Serializable {
      * @ORM\Column(type="json_array") */
     private $roles = [];
 
+
     public function getSalt() {
         // no salt needed since we are using bcrypt
         return null;

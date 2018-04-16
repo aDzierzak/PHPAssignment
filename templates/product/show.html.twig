@@ -15,12 +15,17 @@
         </tr>
         {% endif %}
         <tr>
-        <tr>
             <th>Image</th>
-            <td><img src="/images/{{ product.image }}" alt={{ product.image }} /></td>
+            <td><img src="/public/uploads/brochures/bin{{ product.brochure }}" /></td>
         </tr>
+        <tr>
             <th>Description</th>
             <td>{{ product.description }}</td>
+        </tr>
+
+        <tr>
+        <th>Ingredients</th>
+        <td>{{ product.ingredients }}</td>
         </tr>
 
         <tr>
@@ -82,7 +87,7 @@
                 <td>
 
                 <a href="{{ path('review_show', {'id': review.id}) }}">Show</a>
-               {% if is_granted('ROLE_SUPER_ADMIN') %}
+               {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('review_edit', {'id': review.id}) }}">edit</a>
                     {% elseif is_granted('ROLE_USER') %}
                         {% if review.username ==  app.user.username %}

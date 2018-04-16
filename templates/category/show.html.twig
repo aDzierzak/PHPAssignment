@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>Category</h1>
+    <h1>{{ category.name }} Tea</h1>
 
     <table class="table">
 
@@ -25,15 +25,20 @@
     <table class="table">
         <tr>
             {% for product in category.products %}
-        {% if is_granted('ROLE_ADMIN') %}
-           <th>Id</th>
-            <td>{{ review.id }}</td>
-        {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <th>Id</th>
+            {% endif %}
+            <th>Product</th>
         </tr>
         <tr>
-            <th>Product</th>
-                <td><a href="{{ path('product_show', {'id': product.id}) }}">{{ product.title }}</a></td>
+        {% if is_granted('ROLE_ADMIN') %}
+            <td>{{ product.id }}</td>
+        {% endif %}
+
+            <td><a href="{{ path('product_show', {'id': product.id}) }}">{{ product.title }}</a></td>
+
         </tr>
+
             <br>
                 {% else %}
                     (no products for this category)

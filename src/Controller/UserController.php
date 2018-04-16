@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/user", name="index")
      *
      * @return Response
      */
@@ -99,6 +99,6 @@ class UserController extends Controller
         $em->remove($user);
         $em->flush();
 
-        return $this->redirectToRoute('/');
+        return $this->redirectToRoute('user_index');
     }
 }

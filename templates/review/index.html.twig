@@ -29,14 +29,44 @@
                 <td>{{ review.id }}</td>
             {% endif %}
                 <td><a href="{{ path('product_show', {'id': review.product.id}) }}">{{ review.product.title }}</a></td>
-                <td>{{ review.rating }}</td>
+                <td>
+                    {% if review.rating == 0.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=1 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 1.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=2 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 2.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=3 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 3.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=4 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 4.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=5 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
                 <td>{{ review.username }}</td>
                 <td>{{ review.description }}</td>
 
                 <td>
 
                     <a href="{{ path('review_show', {'id': review.id}) }}">show</a>
-                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('review_edit', {'id': review.id}) }}">edit</a>
                     {% elseif is_granted('ROLE_USER') %}
                         {% if review.username ==  app.user.username %}

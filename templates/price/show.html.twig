@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>Price</h1>
+    <h1>{{ price.name }}</h1>
 
     <table class="table">
 
@@ -13,21 +13,28 @@
         <td>{{ price.id }}</td>
         </tr>
         {% endif %}
-        <tr>
-            <th>Name</th>
-            <td>{{ price.name }}</td>
-        </tr>
-        <tr>
-            <th>Products for this Price range</th>
-            <td>
+
+    </table>
+
+        <h2>Products in this price range</h2>
+        <table class="table">
+            <tr>
                 {% for product in price.products %}
-                    {{ product.id }} :: {{ product.description }}
-                    <br>
-                {% else %}
-                    (no products for this category)
-                {% endfor %}
-            </td>
-        </tr>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Id</th>
+                    <td>{{ product.id }}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <th>Product</th>
+                <td><a href="{{ path('product_show', {'id': product.id}) }}">{{ product.title }}</a></td>
+            </tr>
+            <br>
+            {% else %}
+                (no products for this category)
+            {% endfor %}
+
+
 
     </table>
 
